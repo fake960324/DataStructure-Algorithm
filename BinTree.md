@@ -166,4 +166,35 @@
 >查找的效率取决于树的`高度`
   * 找最大值、最小值：最大值位于树的最右侧，最小值位于树的最左侧
   
+  * 二叉搜索树的插入
+  找到元素应该插入的位置，可以采用与Find类似的方法
+  ``` C
+  BinTree Insert(ElementType X，BinTree BST)
+  {
+    if(!BST)//迭代结束条件
+    {//BST是空树，即找到了带插入位置
+      BST=malloc(sizeof(struct TreeNode));  //构造新节点
+      BST->Data=X;
+      BST->Left=NULL;
+      BST->Right=NULL;
+    }
+    else//迭代内容
+    {
+      if(X>BST->Data)
+      {
+        BST->Right=Insert(X,BST->Right);
+      }
+      else if(X<BST->Data)
+      {
+        BST->Left=Insert(X,BST->Left);
+      }
+    }
+    return BST;
+  }
+  ```
+  * 二叉搜索树的删除
+  三种情况：
+  1. 待删除的是叶节点：直接删除并修改其父节点指针为NULL
+  2. 要删除的节点只有一个子节点：将其父节点的指针指向该节点的子节点
+  3. 要删除的节点左右节点都是子树：用另一节点替代被删除的节点：`右子树的最小元素`或`左子树的最大元素`。
   
