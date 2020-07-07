@@ -1,0 +1,169 @@
+# 二叉树的遍历
+`序`指的是`根节点在遍历中的顺序`：先序指先遍历根节点。  
+前中后序遍历的`路径是一模一样的`。
+* 先序遍历
+  1. 先访问`根节点`
+  2. 先序遍历`左子树`
+  3. 先序遍历`右子树`
+  
+  ```C
+  void PreOrderTraversal(BinTree BT)
+  {
+    if(BT)
+    {
+      printf("%d",BT->Data);
+      PreOrderTraversal(BT->Left);
+      PreOrderTraversal(BT->Right);
+    }
+  }
+  ```
+* 中序遍历
+  1. 先中序遍历`左子树`
+  2. 访问`根节点`
+  3. 中序遍历`右子树`
+  ```C
+  void InOrderTraversal(BinTree BT)
+  {
+    if(BT)
+    {
+      InOrderTraversal(BT->Left);
+      printf("%d",BT->Data);
+      InOrderTraversal(BT->Right);
+    }
+  }
+  ```
+  非递归遍历算法：使用`堆栈`
+    1. 遇到节点就压栈，并遍历其左子树
+    2. 当左子树遍历结束后，从栈顶弹出这个节点并访问
+    3.然后按其有指针再去中序遍历该节点的右子树
+  ```C
+  void InOrderTraversal(BinTree BT)
+  {
+    BinTree T = BT
+      Stack S = CteatStack(MxSize);
+    while (T || !IsEmpty(S))
+    {
+      while (T)
+      {
+        Push(S, T);
+        T = T->Left;
+      }
+      if (!IsEmpty(S))
+      {
+        T = Pop(S);
+        printf("%d",T->Data);
+        T = T->Right;
+      }
+    }
+  }
+  ```  
+  
+* 后序遍历
+  1. 先后序遍历`左子树`
+  2. 后序遍历`右子树`
+  3. 访问`根节点`
+  ```C
+  void PostOrderTraversal(BinTree BT)
+  {
+    if(BT)
+    {
+      MidOrderTraversal(BT->Left);
+      MidOrderTraversal(BT->Right);
+      printf("%d",BT->Data);
+    }
+  }
+  ```
+* 层序遍历
+二叉树遍历的核心问题：二维机构的`线性化`
+  * 从节点访问其左、右儿子节点
+  * 访问做儿子后，右儿子节点怎么办
+    * 需要一个存储结构保存暂时不访问的节点
+    * 存储结构：堆栈、队列
+队列实现：遍历从根节点开始，首先将根节点入队，然后开始执行循环：节点出队，访问该节点、其左右儿子入队
+  ```C
+  void LevelOrderTraversal(BinTree BT)
+  {
+    Queue Q;
+    BinTree T;
+    Q=CreatQueue(MaxSize);
+    Enqueue(Q,BT);
+    while(!IsEmpty(Q))
+    {
+      T=Dequeue(Q);
+      printf("%d",T->Data);
+      if(T->Left)
+      {
+        Enqueue(Q,T->Left);
+      }
+      if(T->Right)
+      {
+        Enqueue(Q,T->Right);
+      }
+    }
+  }
+  ```
+* 二叉搜索树
+查找问题：
+1. `静态查找`与`动态查找`（带插入删除）
+2. 针对动态查找，数据如何组织？
+二叉搜索树：一棵二叉树，满足以下性质：
+1. 非空左子树的所有键值小于其根节点的键值。
+2. 非空右子树的所有键值小于其根节点的键值。
+3. 左、右子树都是二叉搜索树。
+操作：
+1. 查找：从BST中查找元素X，返回其在节点的地址
+2. 找最小（大）值：从BST中查找并返回最小元素所在的节点地址
+3. 插入
+4. 删除
+  * 查找操作：若BST非空，则根节点关键字和X进行比较：
+  1. 若X小于根节点的键值，只需在左子树中继续搜索。
+  2. X大于根节点的键值，在右子树中进行继续搜索
+  3. 若两者相等，搜索完成，返回指向节点的指针
+  
+  ``` C
+  Position Find(ElementType X，BinTree BST)
+  {
+    if(!BST)
+    {
+      return NULL;
+    }
+    if(X>BST->Data)
+    {
+      return Find(X,BST->Right);  //尾递归
+    }
+    else if (X<BST->Data)
+    {
+      return Find(X,BST->Left);   //尾递归
+    }
+    else
+    {
+      return BST;
+    }
+  }
+  ```
+>尾递归会影响执行的效率，一般都可使用循环的方式去除。
+  ``` C
+  Position Find(ElementType X，BinTree BST)
+  {
+    while(BST)
+    {
+      if(X>BST->Data)
+      {
+        BST=BST->Right;
+      }
+      else if (X<BST->Data)
+      {
+        BST=BST->Left;
+      }
+      else
+      {
+        return BST;
+      }
+    }
+    return NULL;
+  }
+  ```
+>查找的效率取决于树的`高度`
+  * 找最大值、最小值：最大值位于树的最右侧，最小值位于树的最左侧
+  
+  
