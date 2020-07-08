@@ -197,4 +197,55 @@
   1. 待删除的是叶节点：直接删除并修改其父节点指针为NULL
   2. 要删除的节点只有一个子节点：将其父节点的指针指向该节点的子节点
   3. 要删除的节点左右节点都是子树：用另一节点替代被删除的节点：`右子树的最小元素`或`左子树的最大元素`。
+  ``` C
+  BinTree Delete(ElementType X，BinTree BST)
+  {
+    if(!BST)
+    {
+      printf("未找到")；
+    }
+    if（X>BST->Data）
+    {
+      BST->Right=Delete(X,BST->Right);
+    }
+    else if(X<BST->Data)
+    {
+      BST->Left=Delete(X,BST->Right);
+    }
+    else
+    {
+      if(BST->Left&&BST->Right)
+      {
+        Tmp=FindMin(BST->Right);
+        BST->Data=Tmp->Data;
+        BST->Right=Delete(Tmp->Data,BST->Right);
+        free(Tmp);
+      }
+      else
+      {
+        Tmp=BST;
+        if(!BST->Left)
+        {
+          BST=BST->Right;
+        }
+        else if(!BST->Right)
+        {
+          BST=BST->Left;
+        }
+        free(Tmp);
+      }
+    }
+    return BST;
+  }
+  ```
+* 平衡二叉树
+搜索树节点不同的`插入次序`，将导致不同`深度`和`平均查找长度ASL`
+`平衡因子BF`：对于节点来说，BT(T)=hL-hR,`hL`、`hR`分别为T的左子树和右子树的高度
+平衡二叉树（AVL）:空树或任一节点的左、右子树的高度差的绝对值不超过1，即`|BT(T)|<=1`
+  * 平衡二叉树的调整
+    * 右单旋：
   
+
+
+
+
