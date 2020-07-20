@@ -102,7 +102,7 @@
     }
   }
   ```
-* 二叉搜索树
+# 二叉搜索树
 查找问题：
 1. `静态查找`与`动态查找`（带插入删除）
 2. 针对动态查找，数据如何组织？
@@ -238,7 +238,7 @@
     return BST;
   }
   ```
-* 平衡二叉树
+# 平衡二叉树
 搜索树节点不同的`插入次序`，将导致不同`深度`和`平均查找长度ASL`
 `平衡因子BF`：对于节点来说，BT(T)=hL-hR,`hL`、`hR`分别为T的左子树和右子树的高度
 平衡二叉树（AVL）:空树或任一节点的左、右子树的高度差的绝对值不超过1，即`|BT(T)|<=1`
@@ -250,6 +250,9 @@
     RR：破坏者在发现者的`右子树的右子树`（Right-Right）上。
     * 左单旋LL：
     ![LL单旋](https://github.com/fake960324/DataStructure-Algorithm/blob/master/Pics/LL%E6%97%8B%E8%BD%AC.png)
-
-
-
+    * LR旋转：
+    LR：破坏者在发现者的`左子树的右子树`上
+    ![LL单旋](https://github.com/fake960324/DataStructure-Algorithm/blob/master/Pics/LR%E6%97%8B%E8%BD%AC.png)
+    * RL旋转
+    RL：破坏者在发现者的`右子树的左子树`上
+    ![LL单旋](https://github.com/fake960324/DataStructure-Algorithm/blob/master/Pics/RL%E6%97%8B%E8%BD%AC.png)
