@@ -243,16 +243,16 @@
 `平衡因子BF`：对于节点来说，BT(T)=hL-hR,`hL`、`hR`分别为T的左子树和右子树的高度
 平衡二叉树（AVL）:空树或任一节点的左、右子树的高度差的绝对值不超过1，即`|BT(T)|<=1`
   * 平衡二叉树的调整
-    * 右单旋RR：
-  ![RR单旋](https://github.com/fake960324/DataStructure-Algorithm/blob/master/Pics/RR%E6%97%8B%E8%BD%AC.png)
-    “发现者”：指平衡条件被破坏的最下面的节点。
-    “破坏者”：造成平衡条件破坏的节点。
-    RR：破坏者在发现者的`右子树的右子树`（Right-Right）上。
-    * 左单旋LL：
-    ![LL单旋](https://github.com/fake960324/DataStructure-Algorithm/blob/master/Pics/LL%E6%97%8B%E8%BD%AC.png)
-    * LR旋转：
-    LR：破坏者在发现者的`左子树的右子树`上
-    ![LL单旋](https://github.com/fake960324/DataStructure-Algorithm/blob/master/Pics/LR%E6%97%8B%E8%BD%AC.png)
-    * RL旋转
-    RL：破坏者在发现者的`右子树的左子树`上
-    ![LL单旋](https://github.com/fake960324/DataStructure-Algorithm/blob/master/Pics/RL%E6%97%8B%E8%BD%AC.png)
+    * 右单旋RR：<br>
+    ![RR单旋](https://github.com/fake960324/DataStructure-Algorithm/blob/master/Pics/RR%E6%97%8B%E8%BD%AC.png)<br>
+    “发现者”：指平衡条件被破坏的最下面的节点。<br>
+    “破坏者”：造成平衡条件破坏的节点。<br>
+    RR：破坏者在发现者的`右子树的右子树`（Right-Right）上。<br>
+    * 左单旋LL：<br>
+    ![LL单旋](https://github.com/fake960324/DataStructure-Algorithm/blob/master/Pics/LL%E6%97%8B%E8%BD%AC.png)<br>
+    * LR旋转：<br>
+    LR：破坏者在发现者的`左子树的右子树`上<br>
+    ![LR旋转](https://github.com/fake960324/DataStructure-Algorithm/blob/master/Pics/LR%E6%97%8B%E8%BD%AC.png)<br>
+    * RL旋转<br>
+    RL：破坏者在发现者的`右子树的左子树`上<br>
+    ![RL旋转](https://github.com/fake960324/DataStructure-Algorithm/blob/master/Pics/RL%E6%97%8B%E8%BD%AC.png)<br>
